@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang=en xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" th:href="@{/styles.css}">
+    <title>Music Theory</title>
+</head>
+<body>
+
+<header>
+    <!--<img src="/images/G Clef.jpg" alt="G Clef logo">-->
+    <h1>Music Theory</h1>
+
+    <nav class="container-nav">
+
+        <ul class="nav-links">
+            <li class="nav-items"><a href="#">Home</a></li>
+            <li class="nav-items"><a href="#">Blog</a></li>
+            <li class="nav-items"><a href="#">Contact</a></li>
+            <li class="nav-items"><a href="#">About Us</a></li>
+
+        </ul>
+    </nav>
+</header>
+
+<main>
+<!--<h1 class="mar">Music Theory</h1>
+    Decided not to use them and instead use as background...
+    <img th:src="@{images/Music symbols.jpg}"/>
+    -->
+    <div class="middle">
+    <h3 >Music Notes & Mode Selection</h3>
+<!--
+    <p>In western music there are only 12 notes! A - A# - B - C - C# - D - D# - E - F - F# - G - G#. The #(sharp)
+        & ♭(flats) are called accidentals. Also, you'll notice that B jumps to C & E jumps to F without an
+        accidental in between. Please note(pun intended) that G# is the same as A♭, and A# is the same as b♭.
+        The 12 notes can be re-written like this A - A#(B♭)- B(C♭)- C(B#) - C#(D♭) - D - D#(E♭) - E(F♭) - F(E#)
+        - F#(G♭) - G - G#(A♭).
+    </p>
+    -->
+<div class="form">
+    <form th:action="@{/music}" method="post" th:object="${musicScale}" >
+        <div class="container">
+            <div>
+        <p>Select an accidental:</p> <!--th:field="*{accidental}"-->
+        <input type="radio"  name="accidental" id="sharp" th:field="${acc}" value="false"
+               checked="checked" />#(sharp)
+        <input type="radio" name="accidental"  id="flat" th:field="${acc}" value="true"/>
+                ♭(flat)
+            <br></div>
+            <br/>
+        <div>
+        <label for="note">Select a note</label>
+        <select id ="note" name="musicNotes" >
+            <option th:if='${acc}' th:each = "musicNote: ${musicNotes}">
+                    <span th:text="${musicNote}"></span>
+            </option>
+            <option th:unless='${acc}' th:each = "musicNote: ${musicNotes}">
+                <span th:text="${musicNote}"></span>
+            </option>
+        </select>
+
+        <label for="mode">Select a mode</label>
+        <select id ="mode" name="musicScales" >
+            <option th:each = "musicScale: ${musicScales}">
+                <span th:text="${musicScale}"></span>
+            </option>
+        </select>
+        </div>
+            <br>
+            <div>
+        <input type="submit" value="Submit"/>
+            </div>
+        </div>
+        <p th:text="${acc}"></p>
+    </form>
+    </div>
+        <div class="answer">
+            <p th:text="${answer}">Answer</p>
+        </div>
+    </div>
+
+<footer>
+    <hr>
+    &copy; 2024 Reynaldo Silva LLC
+</footer>
+</main>
+</body>
+
+</html>

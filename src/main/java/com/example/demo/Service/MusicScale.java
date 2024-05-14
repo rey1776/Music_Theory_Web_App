@@ -26,7 +26,7 @@ public class MusicScale {
                                    "E♭", "E/F♭", "F", "G♭", "G", "A♭"};
     private String[] notesFlat3 = {"A", "B♭", "B/C♭","C", "D♭", "D",
                                    "E♭", "E/F♭", "F", "G♭", "G", "A♭"};
-
+    // need to resolve double sharp issue.
 
 
     private final int W = 2;

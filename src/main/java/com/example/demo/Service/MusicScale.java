@@ -28,6 +28,7 @@ public class MusicScale {
                                    "E♭", "E/F♭", "F", "G♭", "G", "A♭"};
     // need to resolve double sharp issue.
     // fixing git account
+    // changed user name
 
     private final int W = 2;
     private final int H = 1;

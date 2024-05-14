@@ -12,11 +12,6 @@ import java.util.List;
 @Controller
 public class MainController {
 
-    /*
-    @Autowired
-    MusicScale musicScale;
-     */
-
     @RequestMapping("/home")
     public String home(){ return "home"; }
 
@@ -27,9 +22,6 @@ public class MainController {
 
     @GetMapping("/music")
     public String music(@Autowired MusicScale musicScale, Model model){
-        //MusicScale musicScale = new MusicScale();
-        //musicScale.verify();
-
         model.addAttribute("musicScale", musicScale);
         return "music";
     }
@@ -44,7 +36,7 @@ public class MainController {
         System.out.println("The note chosen was "+ note);
         System.out.println("The scale chosen was " + scale);
         System.out.println("I am sending the argument to the music Scale class.");
-        System.out.println("Accidental is : " + musicScale.getAccidental());
+        //System.out.println("Accidental is : " + musicScale.getAccidental());
         String mode = musicScale.ionian(note, scale);
         model.addAttribute("answer", mode);
         return "/music";
@@ -52,15 +44,12 @@ public class MainController {
 
     @ModelAttribute
     public void addNotes(Model model){
-        List<String> notes = Arrays.asList( "A♭","A","A#","B♭","B",
+        final List<String> notes = Arrays.asList( "A♭","A","A#","B♭","B",
                                             "B#","C♭","C","C#","D♭",
                                             "D","D#","E♭","E","E#",
                                             "F♭","F","F#","G♭","G","G#");
 
-        List<String> sharpNotes = Arrays.asList("C","C#","D","D#","E","F","F#","G","G#","A","A#","B");
-        List<String> flatNotes  = Arrays.asList("C","D♭","D","E♭","F♭","F","G♭","G","A♭","A","B♭","B");
         model.addAttribute("musicNotes", notes);
-        model.addAttribute("flatNotes", flatNotes);
     }
 
     @ModelAttribute
@@ -70,6 +59,7 @@ public class MainController {
         model.addAttribute("musicScales", musicScales);
     }
 
+    // Probably will delete was used mostly for testing.
     @ModelAttribute
     public void addAccidental(Model model){
 
